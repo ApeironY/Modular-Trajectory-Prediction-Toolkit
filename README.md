@@ -15,7 +15,7 @@ Repository.
 Pre-trained models are available [here](https://drive.google.com/file/d/13_8CufufnQKOBBUqr4sUMrdadpUPUQHw/view?usp=sharing), which will
 give the following results (min ADE / min FDE, k = 20) after evaluation. 
 
-| Dataset | ADE-prioritized Results | FDE-prioritized Results | Equal-Focus Results |
+| Dataset | ADE-Prioritized Results | FDE-Prioritized Results | Equal-Focus Results |
 | :----: | :----: | :---: | :----: |
 | ETH | 0.26 / 0.51 | 0.29 / 0.43 | 0.26 / 0.43 |
 | HOTEL | 0.11 / 0.19 | 0.12 / 0.16 | 0.11 / 0.16 |
@@ -31,7 +31,7 @@ and also the Equal-Focus best matches.
 'ADE-prioritized' (default) means that the trajectory (among all k predictions) with the minimum ADE is considered as the best match, 
 whereas 'FDE-prioritized' takes the trajectory with minimum FDE as the best match.
 For the Equal-Focus approach, 
-the best matches are selected separately to minimize the ADE and FDE respectively
+the best matches are selected separately to minimize the ADE and FDE respectively.
 
 After obtaining the best match trajectories, 
 we calculate their ADEs and FDEs and consider them as our results. 
@@ -39,7 +39,7 @@ we calculate their ADEs and FDEs and consider them as our results.
 
 It is obvious that ADE-prioritized results tends to have a low ADE, and vice versa for the FDE, whereas
 the Equal-Focus Approach can minimize both the ADE and the FDE. Ways of 
-changing the mode of evaluation can be found in [notations](#notations)
+changing the mode of evaluation can be found in [notations](#notations).
 
 
 
@@ -61,9 +61,9 @@ evaluations, for example:
 
 `python main.py -d 0 2 4 -o 5 -k 20 --flip_aug --rotate -ntc`
 
-## Generating Predictions ##
+## Testing ##
 
-To generate and save the predictions of our model, use the command
+To generate and save the predictions of our model for testing, use the command
 
 `python main.py -d <DATASET_IDX> -test -tf <TEST_FILE_NAME> -k 20 --rotate -ntc`
 
@@ -82,12 +82,24 @@ this is equivalent to
 
 `python main.py -d <DATASET_IDX> -o 0 1 2 3 4 5 -k 20 --flip_aug --rotate`
 
-You can add `-df SDD` to the command if you wish to train on SDD data
+You can add `-df SDD` to the command if you wish to train on SDD data.
 
 By default, the models will be automatically saved to `saved_models` folder. It is also possible to change it by add `-sd SAVE_DIR`
 to the command, in which case it will be automatically created if non-existent.
 
+Generally, the average training time of the PCCSNet on an RTX 2080Ti GPU would be around 3 hours. However, if the settings of modality loss 
+is changed, the running-time will be significantly longer when running for the first time (under the new setting). 
+This is due to the fact that each scene in the training data needs to be re-processed to get the new
+ground truths for the modality loss. Taking zara1 as an example, the average time consumption for each step is:
 
+| Operation | Time |
+| :----: | :----: | 
+| Train Past Encoder | ~60 min |
+| Train Future Encoder | ~60 min |
+| Train Decoder | ~40 min |
+| Train Classifier | ~5 min |
+| Train Synthesizer | ~10 min |
+| Process Scene for Modality Loss | ~120 min |
 
 ## <a id="notations"> Notations </a> ##
 For simplicity, we adopted some notations for the operations mentioned above and in the paper.
@@ -128,6 +140,10 @@ For modes of evaluation:
 | 0 | ADE-prioritized |
 | 1 | FDE-prioritized |
 | 2 | Equal-Focus |
+
+
+## Customizations ##
+We also provide a separate file to help the users perform customizations, see [customizations](Customizations.md) for details.
 
 
 ## Citing ##
