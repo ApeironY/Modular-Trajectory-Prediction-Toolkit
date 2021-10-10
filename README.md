@@ -149,10 +149,12 @@ We also provide a separate file to help the users perform customizations, see [c
 ## Citing ##
 If you find this repository useful, please cite
 ```
-@article{sun2021three,
-  title={Three Steps to Multimodal Trajectory Prediction: Modality Clustering, Classification and Synthesis},
-  author={Sun, Jianhua and Li, Yuxuan and Fang, Hao-Shu and Lu, Cewu},
-  journal={arXiv preprint arXiv:2103.07854},
-  year={2021}
+@InProceedings{Sun_2021_ICCV,
+    author    = {Sun, Jianhua and Li, Yuxuan and Fang, Hao-Shu and Lu, Cewu},
+    title     = {Three Steps to Multimodal Trajectory Prediction: Modality Clustering, Classification and Synthesis},
+    booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+    month     = {October},
+    year      = {2021},
+    pages     = {13250-13259}
 }
 ```
