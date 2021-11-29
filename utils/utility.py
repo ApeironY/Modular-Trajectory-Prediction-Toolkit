@@ -23,10 +23,9 @@ def create_folders(names, data_dir):
 
 def display_performance(perf_dict):
     print("==> Current Performances (ADE & FDE):")
-    cnt = 0
     for a, b in perf_dict.items():
         c = copy.deepcopy(b)
-        if cnt < 2:
+        if a in ["Obs_Encoder", "Pred_Encoder"]:
             c[0] = np.round(c[0], 4)
             c[1] = np.round(c[1], 4)
             print("   ", a, c)
@@ -34,7 +33,6 @@ def display_performance(perf_dict):
             c[-1][0] = np.round(c[-1][0], 4)
             c[-1][1] = np.round(c[-1][1], 4)
             print("   ", a, c[-1])
-        cnt += 1
 
 
 def gen_memory(data, model, save_dir=None, split=10, bi_shot=False, speed_data=None, scene_data=None):
