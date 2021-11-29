@@ -129,6 +129,7 @@ class PCCS_Dataset(Dataset):
                                    [np.sin(theta), np.cos(theta)]]).float()
             return {
                 "obs_enc": self.obs_enc[item],
-                "rotate_mat": matrix
+                "rotate_mat": matrix,
+                "last_obs": self.trj_data[item][self.obs_len - 1]
             }
 
