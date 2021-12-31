@@ -5,6 +5,7 @@ from sklearn.cluster import KMeans
 from utils.checkings import *
 from torch.optim.lr_scheduler import LambdaLR
 
+os.environ["OMP_NUM_THREADS"] = "8"  # Limit the CPU usage during KMeans clustering
 
 def create_folders(names, data_dir):
     datasets = ["ethucy", "SDD"]
