@@ -1,3 +1,0 @@
-torch>=1.4.0
-numpy>=1.18.5
-scikit-learn>=0.23.1
