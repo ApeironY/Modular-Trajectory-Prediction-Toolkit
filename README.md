@@ -21,4 +21,12 @@ If you use this repo in your research, please cite
   pages={6467--6476},
   year={2022}
 }
+
+@inproceedings{sun2023stimulus,
+  title={Stimulus Verification Is a Universal and Effective Sampler in Multi-Modal Human Trajectory Prediction},
+  author={Sun, Jianhua and Li, Yuxuan and Chai, Liang and Lu, Cewu},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={22014--22023},
+  year={2023}
+}
 ```
